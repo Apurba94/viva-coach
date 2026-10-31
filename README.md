@@ -14,6 +14,11 @@ Prepare for a PhD viva or thesis defence. Answer aloud, get the timing right, an
 
 `--demo` opens a temporary database with a fictional thesis. All data stays on your computer.
 
+## Download
+
+Windows: get the `.exe` from [Releases](https://github.com/Apurba94/viva-coach/releases/latest) and double-click it. No installation or Python is needed.
+Windows may show a SmartScreen warning the first time because the program is not code-signed: choose *More info*, then *Run anyway*.
+
 ## From source
 
 ```bash
