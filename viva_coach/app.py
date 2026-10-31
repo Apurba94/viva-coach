@@ -16,8 +16,8 @@ SCHEMA = entities(
         Field("notes", "Things to reread", "long"),
     ], "number"),
     Entity("question", "Question", "Questions", "text", [
-        Field("text", "Question", "long", required=True, list_col=True, width=52),
-        Field("chapter_id", "Chapter", "ref", ref="chapter", list_col=True, width=20),
+        Field("text", "Question", "long", required=True, list_col=True, width=40),
+        Field("chapter_id", "Chapter", "ref", ref="chapter", list_col=True, width=16),
         Field("category", "Category", "choice", vv.CATEGORIES, default="Contribution", list_col=True, width=12),
         Field("hint", "Advice", "long"),
         Field("answer", "My answer notes", "long"),
@@ -37,7 +37,7 @@ SCHEMA = entities(
     Entity("slide", "Slide", "Slides", "title", [
         Field("position", "Order", "int", default=1, list_col=True, width=8),
         Field("title", "Slide", required=True, list_col=True, width=36),
-        Field("seconds", "Planned seconds", "int", default=60, list_col=True, width=14),
+        Field("seconds", "Planned seconds", "int", default=60, list_col=True, width=16),
         Field("notes", "Speaker notes", "long"),
     ], "position"),
     Entity("session", "Session", "Sessions", "kind", [
@@ -76,7 +76,7 @@ def sample(store):
         if i % 4 == 0:
             extra["answer"] = "A fictional outline answer, with one piece of evidence from the chapter that supports it."
         store.update("question", q["id"], chapter_id=cats[q["category"]], **extra)
-    store.insert("examiner", name="Dr A. External (fictional)", role="External", field="Cognitive psychology", works="Wrote the main review of sleep and recall.", likely="Why not a larger sample?\nHow does this fit her 2019 model?")
+    store.insert("examiner", name="Dr A. External (fictional)", role="External", field="Cognitive psychology", works="Wrote the main review of sleep and recall.", likely="Why not a larger sample?\nHow does this fit the 2019 model?")
     for i, (t, s) in enumerate((("Title and thanks", 20), ("The problem", 90), ("What was missing", 90), ("Research questions", 60), ("Design", 120), ("Main result", 150), ("What it means", 120), ("Limits and next steps", 60), ("Take-home message", 30)), 1):
         store.insert("slide", position=i, title=t, seconds=s, notes="A short fictional speaker note for this slide, for rehearsal.")
     store.set_setting("viva_date", (start + datetime.timedelta(days=30)).isoformat())
